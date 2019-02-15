@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>对span标签控制鼠标点击</title>
+        <script type="text/javascript" src="js/jquery-2.1.4.js"></script>
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+    </head>
+    <body>
+        <h5 style="font-family: '微软雅黑';">图片文字并排摆放，文字局域图片腰部</h5>
+        <!--<span style="font-family: '微软雅黑';color: orangered;font-size: 10px; ">注意：有些浏览器不支持旋转的特性transform:正如你所看到的<br/></span>-->
+         
+        <span id="goodSpan" onclick="sendGood()">
+            <img src="img/good.png" style="width: 25px; height: 25px;" /> 
+        </span>
+        [<span id="good"></span>]
+            
+        <span id="badSpan" onclick="sendBad()">
+            <img src="img/bad.png" style="width: 25px; height: 25px; transform: rotate(180deg);" /> 
+        </span>
+        [<span id="bad"></span>]
+         
+        <script>
+            /*点赞的数量：*/
+            document.getElementById("good").innerText = "";
+            var good = document.getElementById("good").textContent;
+             
+            document.getElementById("bad").innerText  = "";
+            var bad = document.getElementById("bad").textContent;
+            window.onload = function(){
+                if (good == "") {
+                    good = 0;
+                    document.getElementById("good").innerText = 0;
+                }
+                if (bad == "") {
+                    bad = 0;
+                    document.getElementById("bad").innerText = 0;
+                }              
+            }
+             
+            /*点赞的数量：*/
+            function sendGood(){
+                good = parseInt(good) + 1;
+                document.getElementById("good").innerText = good;
+                 
+                document.getElementById("goodSpan").onclick = function(e){
+                    e.preventDefault();
+                    e.stopImmediatePropagation();
+                }
+            }
+             
+             
+            /*踩的数量：*/
+            function sendBad(){
+                bad = parseInt(bad) + 1;
+                document.getElementById("bad").innerText = bad;
+                document.getElementById("badSpan").onclick = function(e){
+                    e.preventDefault();
+                    e.stopImmediatePropagation();
+                }
+            }
+        </script>
+    </body>
+</html>
